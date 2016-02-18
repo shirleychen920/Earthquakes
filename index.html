@@ -9,8 +9,13 @@
       {{#if hasError}}
         Error: Earthquakes failed to load.
       {{else}}
+      <ul>
         {{#each earthquake}}
-          <h2>{{type}}</h2>
+        {{#each features}}
+          <li>Place: {{properties.place}} <br> Magnitude: {{properties.mag}} </li>
+          {{/each}}
+      </ul>
+
         <cite><a href='{{metadata.url}}'>{{metadata.title}}</a></cite>
         {{/each}}
       {{/if}}
