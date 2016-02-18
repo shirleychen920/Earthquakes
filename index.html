@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+  <title>Test page</title>
+</head>
+<body>
+  <script id='earthquakeTemplate' type='text/x-handlebars-template'>
+    {{#if firstLoad}}
+      {{#if hasError}}
+        Error: Earthquakes failed to load.
+      {{else}}
+        {{#each earthquake}}
+          <h2>{{type}}</h2>
+        <cite><a href='{{metadata.url}}'>{{metadata.title}}</a></cite>
+        {{/each}}
+      {{/if}}
+    {{else}}
+      Loading&hellip;
+    {{/if}}
+  </script>
+  <h1>Earthquakes!</h1>
+  <button id='getAnotherEarthquake'>Get another earthquake</button>
+  <div id='earthquakeContainer'></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src='script.js'></script>
+</body>
+</html>
