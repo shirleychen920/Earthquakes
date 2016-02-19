@@ -25,7 +25,7 @@ $(document).ready(function() {
 
   function renderEarthquake() {
     var templateHtml = template(responses);
-    earthquakeContainer.empty()
+    $('#earthquakeContainer').empty();
     earthquakeContainer.html(templateHtml);
   }
 });
