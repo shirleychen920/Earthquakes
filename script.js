@@ -8,7 +8,8 @@ $(document).ready(function() {
   };
   var template = Handlebars.compile($('#earthquakeTemplate').html());
   $('#getAnotherEarthquake').click(getEarthquake);
-  renderEarthquake();
+  getEarthquake();
+
 
   function getEarthquake() {
     $.get(REQUEST_URL).then(function(resp) {
