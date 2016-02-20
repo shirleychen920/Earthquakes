@@ -2,6 +2,19 @@
 <html>
 <head>
 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+  <script src='script.js'></script>
+  <script>
+
+    function popalert(){
+      alert("It's been one minutue. You can update earthquake info!");
+    }
+    setTimeout(popalert, 60000);
+
+
+   </script>
+
    <style>
       html, body, #map {
         margin: 0;
@@ -27,7 +40,7 @@
 
         // (In this example we use a locally stored copy instead.)
         // script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
-        script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojsonp';
+        script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojsonp';
         document.getElementsByTagName('head')[0].appendChild(script);
       }
 
@@ -38,7 +51,7 @@
       // Call the initialize function after the page has finished loading
       google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-  <title>Test page</title>
+  <title>Earthquakes</title>
 </head>
 
 
@@ -47,7 +60,7 @@
 
   <div id="map" style="width:600px;height:400px"></div>
  
-  <button id='getAnotherEarthquake'>Get another earthquake</button>
+  <button id='getAnotherEarthquake' onclick='setTimeout(popalert, 60000)'>Update earthquake info</button>
   <div id='earthquakeContainer'></div>
   
 
@@ -78,9 +91,7 @@
 
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src='script.js'></script>
+ 
 
 </body>
 </html>
