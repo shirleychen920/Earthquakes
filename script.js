@@ -1,8 +1,8 @@
 $(document).ready(function() {
-  var REQUEST_URL = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_hour.geojson';
+  var REQUEST_URL = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson';
   var earthquakeContainer = $('#earthquakeContainer');
   var responses = {
-  earthquake: [],  
+  earthquake:[],  
   firstLoad: false,
   hasError: false
   };
@@ -20,12 +20,12 @@ $(document).ready(function() {
     }).always(function() {
       responses.firstLoad = true;
       renderEarthquake();
+      responses.earthquake.pop();
     });
   }
 
   function renderEarthquake() {
     var templateHtml = template(responses);
-    $('#earthquakeContainer').empty();
     earthquakeContainer.html(templateHtml);
   }
 });

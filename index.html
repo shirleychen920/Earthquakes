@@ -1,6 +1,43 @@
 <!doctype html>
 <html>
 <head>
+
+   <style>
+      html, body, #map {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      var map;
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 2,
+          center: {lat: 51.4253, lng: -116.1806},
+          mapTypeId: google.maps.MapTypeId.TERRAIN
+        };
+        map = new google.maps.Map(document.getElementById('map'),
+              mapOptions);
+
+        // Create a <script> tag and set the USGS URL as the source.
+        var script = document.createElement('script');
+
+        // (In this example we use a locally stored copy instead.)
+        // script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp';
+        script.src = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojsonp';
+        document.getElementsByTagName('head')[0].appendChild(script);
+      }
+
+      function eqfeed_callback(results) {
+        map.data.addGeoJson(results);
+      }
+
+      // Call the initialize function after the page has finished loading
+      google.maps.event.addDomListener(window, 'load', initialize);
+</script>
   <title>Test page</title>
 </head>
 
@@ -8,7 +45,7 @@
 <body>
   <h1>See the M1.0+ earthquakes that happened in the past hour!</h1>
 
-  <div id="googleMap" style="width:500px;height:380px;"></div>
+  <div id="map" style="width:600px;height:400px"></div>
  
   <button id='getAnotherEarthquake'>Get another earthquake</button>
   <div id='earthquakeContainer'></div>
@@ -44,23 +81,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script src='script.js'></script>
-  <script src="http://maps.googleapis.com/maps/api/js"></script>
-  <script>
-  function initialize() {
-    var mapProp = {
-     center: new google.maps.LatLng(34.0722,-118.4441),
-      zoom:5,
-      mapTypeId:google.maps.MapTypeId.ROADMAP
-    };
-    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-    var marker=new google.maps.Marker({
-    position: mapProp.center,
-    });
-
-    marker.setMap(map);
-}
-google.maps.event.addDomListener(window, 'load', initialize);
-</script>
 </body>
 </html>
